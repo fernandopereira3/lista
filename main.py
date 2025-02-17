@@ -19,7 +19,6 @@ except pymongo.errors.ConnectionFailure as e:
 
 
 @app.route('/lista', methods=['GET', 'POST'])
-
 def normalizar_matricula(matricula):
     return re.sub(r'[\.\-]', '', matricula).strip() 
 
@@ -28,18 +27,16 @@ def pesquisa_visi():
         matricula_normalizada = re.compile(f".*{txt_d_pesquisa}.*", re.IGNORECASE)
         consulta_exata = {'matricula': matricula_normalizada}
 
-        #{ "<field>": { "$regex": "pattern", "$options": "<options>" } } REGEX DO MONGODB
+        # { "<field>": { "$regex": "pattern", "$options": "<options>" } } REGEX DO MONGODB
         
         if not resultado:
-        resultado = list(sentenciados.find({'matricula': {'$regex': matricula_normalizada}}))  
-        return resultado
-
-
+            resultado = list(sentenciados.find({'matricula': {'$regex': matricula_normalizada}}))  
+            return resultado
 
         query = {
             'detento': {
-                'matricula':"  matr,
-                '$lte': data_fim
+                'matricula': "matr",
+                '$lte': "data_fim"
             }
         }
 
@@ -49,15 +46,14 @@ def pesquisa_visi():
             # Convert ObjectId to string using list comprehension
             results = [{**result, '_id': str(result['_id'])} for result in results]
 
-            return render_template('pesquisa.html', results=results) # Pass results to template
+            return render_template('pesquisa.html', results=results)  # Pass results to template
 
         except pymongo.errors.PyMongoError as e:
             print(f"Database error: {e}")
             return render_template('pesquisa.html', error="A database error occurred.")
 
-    return render_template('pesquisa.html') # Render the page initially or if not a POST request
+    return render_template('pesquisa.html')  # Render the page initially or if not a POST request
 
 
 if __name__ == '__main__':
     app.run(debug=True, port=80)
-
