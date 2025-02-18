@@ -43,3 +43,25 @@ input[type="submit"]  {
 input[type="submit"]:hover  {
     background-color: #5439de;
  }
+#resultados{
+    width: 1000px;
+    margin-left: auto;
+    margin-right: auto;
+    position:relative;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
+ .table-table-bordered{
+    width: 100%;
+    position:relative;
+ }
+.thead{
+    width: 100%;
+    position:relative;
+}
+.tbody{
+    width: 100%;
+    position:relative;
+}

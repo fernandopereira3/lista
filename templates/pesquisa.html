@@ -17,10 +17,28 @@
 
         {{ form.csrf_token }}
     </form>
-    <div>
-        
+    <div id="resultados">
+    {% if sentenciados %}
+    <h3 class="mt-4">Resultados da Pesquisa</h3>
+    <table class="table-table">
+        <thead class="thead">
+            <tr>
+                <th>Matrícula</th>
+                <th>Nome</th>
+            </tr>
+        </thead>
+        <tbody class="tbody">
+            {% for s in sentenciados %}
+            <tr>
+                <td>{{ s.matricula }}</td>
+                <td>{{ s.nome }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+        {% else %}
+    <p class="mt-3">Nenhum resultado encontrado.</p>
+{% endif %}
     </div>
-
-
 </body>
 </html>
