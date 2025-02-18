@@ -1,10 +1,8 @@
 from flask import Flask, render_template, request, jsonify
 from models.forms import PesquisaForm
 import pandas as pd
-import pymongo
-import os
-import re
-from datetime import datetime
+import  os
+from pymongo import MongoClient
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
 from wtforms.validators import DataRequired
@@ -17,23 +15,39 @@ app.config['SECRET_KEY'] = SECRET_KEY
 
 # Initialize MongoDB client outside the request context
 try:
-    client = pymongo.MongoClient(app.config['MONGO_URI'])
+    client = MongoClient("mongodb://localhost:27017/")
     db = client["cpppac"]
     collection = db["sentenciados"]
-except pymongo.errors.ConnectionFailure as e:
-    print(f"Nao foi possivel conectar ao banco:  {e}")
-    exit(1)
+except Exception as e:
+    print(f"Erro ao conectar ao MongoDB: {e}")
 
 class PesquisaForm(FlaskForm):
-    matricula = StringField('matrícula', validators=[DataRequired(message='Campo obrigatório')])
-    nome = StringField('nome')
-    pesquisar = SubmitField('pesquisar')
+    matricula = StringField('Matrícula')
+    nome = StringField('Nome')
+    pesquisar = SubmitField('PESQUISAR')
 
 @app.route('/lista', methods=['GET', 'POST'])
 def pesquisa_matricula():
   form = PesquisaForm()
-  return render_template('pesquisa2.html', form=form)
+  return render_template('pesquisa.html', form=form)
+  #if request.method == 'POST':
+  #  matricula = request.form['matricula']
+  #  nome = request.form['nome']
+  #  if matricula:
+  #    cursor = list(collection.find({'matricula': matricula}))
+  #  elif nome:
+  #    cursor = list(collection.find({'nome': nome}))
+  #  else:
+  #    cursor = collection.find()
+  #  for sentenciado in cursor:
+  #    return sentenciado, 400
+     #return render_template('pesquisa.html', form=form, sentenciados=sentenciado)
 
+
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 if __name__ == '__main__':
     app.run(debug=True, port=80)

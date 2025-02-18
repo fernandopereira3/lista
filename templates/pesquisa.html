@@ -1,44 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <title>LISTA</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LISTA</title>    
+    <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
 </head>
 <body>
-  <h1 class="text-center mb-4">Pesquisa de Sentenciados</h1>
-  <form method="POST">
-    <div class="row justify-content-center align-items-center">
-      <!-- Search input -->
-      <div class="col-md-6 col-lg-4 mb-3">
-        <input type="text" name="txt_d_pesquisa" id="txt_d_pesquisa" class="form-control" placeholder="Digite o número da matrícula ou parte do nome..." required>
-      </div>
-      
-      <!-- Submit button -->
-      <div class="col-md-6 col-lg-2 mb-3">
-        <button type="submit" class="btn btn-primary w-100">Pesquisar</button>
-      </div>
+    <h1>Pesquisa de Detentos</h1>
+    <form name="pesquisa_preso" method="POST">
+        {{ form.hidden_tag() }}
+
+        {{ form.nome.label }} {{ form.nome }} </br>
+        {{ form.matricula.label }} {{ form.matricula }} </br>
+        {{ form.pesquisar() }}
+
+        {{ form.csrf_token }}
+    </form>
+    <div>
+        
     </div>
-  </form>
-  
-  <!-- Display search results -->
-    <h2 class="text-center mt-4">Resultados da Pesquisa:</h2>
-    
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th scope="col">Matrícula</th>
-          <th scope="col">Nome do Detento</th>
-        </tr>
-      </thead>
-      
-      <tbody>
-          <tr>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-          </tr>
-      </tbody>
-    </table>
-    <h2 class="text-center mt-4">Nenhum resultado encontrado.</h2>
-  </body>
-  </html>
+
+
+</body>
+</html>
