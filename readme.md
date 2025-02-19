@@ -20,16 +20,21 @@ A web-based system built with Flask and MongoDB for managing and searching recor
 
 ### Installation
 1. Clone the repository 
+    ```bash
     git clone https://github.com/yourusername/lista.git 
+    ```
 
 2. Install dependencies
-
+    ```bash
     pip install -r requirements.txt
+    ```
 
 3. Start MongoDB
 
 4. Run the application
+    ```bash
     python app.py
+    ```
 
 
 # Sistema de Gestão de Registros
