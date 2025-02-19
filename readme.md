@@ -59,14 +59,18 @@ Sistema web construído com Flask e MongoDB para gerenciamento e busca de regist
 
 ### Instalação
 1. Clone o repositório
-
+    ```bash
     git clone https://github.com/yourusername/lista.git
+    ```
 
 2. Instale as dependências
-
+    ```bash
     pip install -r requirements.txt
+    ```
 
 3. Inicie o MongoDB
 
 4. Execute o aplicativo
+    ```bash
     python app.py
+    ```
