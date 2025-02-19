@@ -20,15 +20,18 @@ A web-based system built with Flask and MongoDB for managing and searching recor
 
 ### Installation
 1. Clone the repository
-```bash git clone https://github.com/yourusername/lista.git
+```bash 
+    git clone https://github.com/yourusername/lista.git 
 
 2. Install dependencies
-```bash pip install -r requirements.txt
+```bash 
+    pip install -r requirements.txt
 
 3. Start MongoDB
 
 4. Run the application
-```bash python app.py
+```bash 
+    python app.py
 
 
 # Sistema de Gestão de Registros
@@ -53,12 +56,15 @@ Sistema web construído com Flask e MongoDB para gerenciamento e busca de regist
 
 ### Instalação
 1. Clone o repositório
-```bash git clone https://github.com/yourusername/lista.git
+```bash 
+    git clone https://github.com/yourusername/lista.git
 
 2. Instale as dependências
-```bash pip install -r requirements.txt
+```bash 
+    pip install -r requirements.txt
 
 3. Inicie o MongoDB
 
 4. Execute o aplicativo
-```bash python app.py
+```bash 
+    python app.py
