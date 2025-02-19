@@ -43,15 +43,25 @@ input[type="submit"]  {
 input[type="submit"]:hover  {
     background-color: #5439de;
  }
-#resultados{
-    width: 1000px;
-    margin-left: auto;
-    margin-right: auto;
+ #Resultado{
+    width: 600px;
+    margin: 20px auto;
     position:relative;
-    padding: 20px;
-    background-color: #fff;
+    padding: 40px;
+    line-height: 2.5;
+    background-color: #ffffff;
     border-radius: 5px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+ }
+ #tabela-selecionados{
+    font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+    color: #4f6b72;
+    border-right: 1px solid #C1DAD7;
+    border-bottom: 1px solid #C1DAD7;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-align: left;
+    padding: 6px 6px 6px 12px;
  }
  .table-table-bordered{
     width: 100%;
