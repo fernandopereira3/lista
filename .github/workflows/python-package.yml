@@ -27,7 +27,6 @@ jobs:
     - name: Instalando Dependencias
       run: |
         python -m pip install --upgrade pip
-        python -m pip install flask pytest
         python -m pip install -r requirements.txt
     - name: Rodando o codigo
       run: |

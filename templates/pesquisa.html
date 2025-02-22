@@ -7,8 +7,7 @@
     <link rel="stylesheet" type= "text/css" href="{{ url_for('static', filename='../static/styles.css') }}">
 </head>
 <body>
-    <a href="/lista-selecionados">Ver Lista de Selecionados</a>
-    <h1>Pesquisa de Detentos</h1>
+    <a href="/lista-selecionados">Ver Lista</a>
     <form method="POST" id="pesquisa-form">
         {{ form.csrf_token }}
         {{ form.matricula.label }} {{ form.matricula() }}
@@ -23,9 +22,8 @@
     </form>
 
     <!-- Display search results -->
-     <div id="Resultado">
+     <div class="Resultado">
         {% if sentenciados %}
-        <h3>Resultado:</h3>
         <ul>
             {% for sentenciado in sentenciados %}
             <li>
@@ -35,8 +33,7 @@
             </li>
             {% endfor %}
         </ul>
-        {% endif %}
-        
+        {% endif %}  
     </div>
     <script>
         function adicionarLista(matricula) {

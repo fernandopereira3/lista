@@ -1,84 +1,47 @@
-body  {
-    font-family: sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
- }
+body {
+   font-family: Arial, sans-serif;
+   background-color: #f2f2f2;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column; /* Alinha itens verticalmente */
+   align-items: center; /* Centraliza itens horizontalmente */
+   min-height: 100vh; /* Garante que o body ocupe a altura total da tela */
+}
 
-h1  {
-    text-align: center;
-    color: #333;
- }
 
-label  {
-    display: block;
-    margin-bottom: 5px;
- }
+.Resultado {
+   width: 900px;
+   background-color: #fff;
+   margin: 20px 0; /* Margem superior e inferior */
+   border-radius: 5px;
+   text-align: left;
+   line-height: 2.5;
+}
 
-input[type="text"],
-input[type="submit"]  {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
-    box-sizing: border-box;
- }
+.form-container {
+   display: flex;
+   justify-content: space-around; /* Distribui os formulários horizontalmente */
+   width: 100%;
+   max-width: 640px; /* Largura máxima para os formulários */
+   margin: 20px 0;
+}
 
-input[type="submit"]  {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
- }
-input[type="submit"]:hover  {
-    background-color: #5439de;
- }
- #Resultado{
-    width: 900px;
-    margin: 20px auto;
-
-    padding: 40px;
-    line-height: 2.5;
-    background-color: #ffffff;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
- }
-#pesquisa-form{
-   display: inline-block;
+#pesquisa-form {
    width: 300px;
-   margin: 10px;
    padding: 20px;
    background-color: #fff;
    border-radius: 5px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    text-align: left;
+
 }
-#valores-form{
-   display: inline-block;
+
+#valores-form {
    width: 300px;
-   margin: 10px;
    padding: 20px;
    background-color: #fff;
    border-radius: 5px;
    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
    text-align: left;
-} 
-.table-table-bordered{
-    width: 100%;
-
-    text-align: center;
- }
-.thead{
-    width: 100%;
-
-    text-align: center;
-}
-.tbody{
-    width: 100%;
-
-    text-align: center;
 }

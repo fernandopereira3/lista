@@ -74,6 +74,7 @@ def apagar(matricula):
     if sentenciado:
         db.lista_selecionados.delete_one({'matricula': matricula})
         return jsonify({'status': 'success', 'message': 'Removido com sucesso'})
+    return jsonify({'status': 'error', 'message': 'Matrícula não encontrada'})
 
 @app.route('/completa', methods=['GET'])
 def completa():
