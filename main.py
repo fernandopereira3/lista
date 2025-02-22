@@ -1,14 +1,12 @@
 from flask import Flask, render_template, jsonify
 from models.forms import PesquisaForm
 import pandas as pd
-import  os
+import os
 import re
 import datetime
-from pymongo import MongoClient
 from flask_pymongo import PyMongo
 from flask_wtf import FlaskForm
 from wtforms import StringField, SubmitField
-from wtforms.validators import DataRequired
 
 app = Flask(__name__, instance_relative_config=True)
 app.config['MONGO_URI'] = 'mongodb://localhost:27017/cpppac'
@@ -18,12 +16,14 @@ app.config['SECRET_KEY'] = os.urandom(32)
 mongo = PyMongo(app)
 db = mongo.db  # Aqui você acessa o banco de dados diretamente
 
-
 class PesquisaForm(FlaskForm):
     matricula = StringField('Matrícula')
     nome = StringField('Nome')
+    garrafas = StringField('Garrafas')
+    homens = StringField('Homens')
+    mulheres = StringField('Mulheres')
+    criancas = StringField('Crianças')
     pesquisar = SubmitField('PESQUISAR')
-
 
 @app.route('/lista', methods=['GET',  'POST'])
 def pesquisa_matricula():
@@ -33,10 +33,10 @@ def pesquisa_matricula():
 
     if form.validate_on_submit():
         matricula = form.matricula.data.strip()
-        #matri_norm = re.sub(r'[\.\-]', '', matricula).strip()
+        # matri_norm = re.sub(r'[\.\-]', '', matricula).strip()
         nome = form.nome.data.strip()
         query = {}
-#re.compile(f".*{txt_d_pesquisa}.*", re.IGNORECASE)
+        # re.compile(f".*{txt_d_pesquisa}.*", re.IGNORECASE)
         if matricula:
             query['matricula'] = re.compile(f".*{matricula}.*", re.IGNORECASE)
         if nome:
@@ -68,13 +68,18 @@ def visualizar_lista():
     lista_selecionados = db.lista_selecionados.find()
     return render_template('lista.html', lista=lista_selecionados)
 
+@app.route('/apaga/<matricula>', methods=['DELETE'])
+def apagar(matricula):
+    sentenciado = db.sentenciados.find_one({'matricula': matricula})
+    if sentenciado:
+        db.lista_selecionados.delete_one({'matricula': matricula})
+        return jsonify({'status': 'success', 'message': 'Removido com sucesso'})
 
 @app.route('/completa', methods=['GET'])
 def completa():
-    resultado = db.sentenciados.find()  # Substitua 'sentenciados' pelo nome da coleção real
+    resultado = db.sentenciados.find()
     lista = list(resultado)
-    return jsonify(lista)  # Retorna toda a lista em JSON
-
+    return jsonify(lista)
 
 @app.route('/')
 def index():
@@ -82,3 +87,6 @@ def index():
 
 if __name__ == '__main__':
     app.run(debug=True, port=80)
+
+
+

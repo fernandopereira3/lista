@@ -9,22 +9,29 @@
 <body>
     <a href="/lista-selecionados">Ver Lista de Selecionados</a>
     <h1>Pesquisa de Detentos</h1>
-    <form method="POST">
+    <form method="POST" id="pesquisa-form">
         {{ form.csrf_token }}
         {{ form.matricula.label }} {{ form.matricula() }}
         {{ form.nome.label }} {{ form.nome() }}
         {{ form.pesquisar() }}
     </form>
-    
+    <form action="POST" id="valores-form">
+        {{ form.garrafas.label }} {{ form.garrafas() }}
+        {{ form.homens.label }} {{ form.homens() }}
+        {{ form.mulheres.label }} {{ form.mulheres() }}
+        {{ form.criancas.label }} {{ form.criancas() }}
+    </form>
+
     <!-- Display search results -->
      <div id="Resultado">
         {% if sentenciados %}
-        <h3>Resultados da Pesquisa:</h3>
+        <h3>Resultado:</h3>
         <ul>
             {% for sentenciado in sentenciados %}
             <li>
                 {{ sentenciado.nome }} - {{ sentenciado.matricula }}
                 <button onclick="adicionarLista('{{ sentenciado.matricula }}')">Adicionar</button>
+                <button onclick="apagar('{{ sentenciado.matricula }}')" class="btn btn-danger">Apagar</button>
             </li>
             {% endfor %}
         </ul>
@@ -47,7 +54,26 @@
             });
         }
     </script>
-  
-    </div>
+    <script>
+        function apagar(matricula, nome) {
+            if (confirm('Voce está certo disso?')) {
+                fetch(`/delete/${matricula}`, {
+                    method: 'DELETE'
+                })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    location.reload();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Erro ao apagar a matricula' + matricula);
+                });
+            }
+            else {
+                alert('Operação cancelada');
+            }
+        }
+        </script>
 </body>
 </html>
