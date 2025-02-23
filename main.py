@@ -1,5 +1,4 @@
 from flask import Flask, render_template, jsonify
-from models.forms import PesquisaForm
 import pandas as pd
 import os
 import re
