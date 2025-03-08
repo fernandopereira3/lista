@@ -1,4 +1,10 @@
-# Record Management System
+# THIS IS A STARTED OF ANOTHER PROJECT, NOW HE CALL NOVELA AND YOU CAN FIND IN:
+
+ ```bash
+    git clone https://github.com/fernandopereira3/novela.git
+```
+
+# 
 
 ### Overview
 A web-based system built with Flask and MongoDB for managing and searching records. The system allows searching by registration number or name, with the ability to create custom lists of selected entries.
